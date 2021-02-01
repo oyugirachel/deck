@@ -161,7 +161,13 @@ func Filter(f func(card Card) bool) func([]Card) []Card{
 // Deck function that allows for the addition of new decks
 func Deck(n int) func([]Card) []Card{
 	return func(cards []Card) []Card{
-		
+		var ret []Card
+		for i :=0; i<n; i++{
+			ret = append(ret,cards...)
+
+		}
+
+		return ret
 	}
 }
 
