@@ -112,12 +112,14 @@ func absRank(c Card) int {
 	        
 }
 
+var shuffleRand = rand.New(rand.NewSource(time.Now().Unix()))
 // Shuffle function takes in a slice of cards(Basically figuring out the order of the cards)
-func Shuffle(cards []Card) []Card{
+func Shuffle(cards []Card)  []Card{
+	
 	// Creating a new slice of cards
 	ret := make([]Card, len(cards))
-	r := rand.New(rand.NewSource(time.Now().Unix()))
-	perm := r.Perm(len(cards))
+	
+	perm := shuffleRand.Perm(len(cards))
 	// perm ={0,1,4,2,3} (j are those values inside)
 	// i is the index of the permutation
 	for i, j :=range perm{
@@ -127,9 +129,8 @@ func Shuffle(cards []Card) []Card{
 
 	}
 	return ret
-	
-
 }
+	
 // Jokers function that you pass the number of jokers to be placed in the deck
 func Jokers(n int) func([]Card) []Card{
 	return func(cards []Card) []Card{
